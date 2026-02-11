@@ -1,4 +1,4 @@
-package com.zara.pricing.dto;
+package com.zara.pricing.domain.model;
 
 import java.time.LocalDateTime;
 
@@ -9,11 +9,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PricesResponseDTO {
+public class Price {
+    private Long id;
     private Long productId;
     private Long brandId;
     private Integer priceList;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Double finalPrice;
+    private Integer priority;
+    private Double price;
+    private String curr;
 }
