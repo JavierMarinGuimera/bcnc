@@ -16,6 +16,7 @@ public interface PriceJpaRepository extends JpaRepository<PriceJpaEntity, Long> 
         AND p.brandId = :brandId
         AND :date BETWEEN p.startDate AND p.endDate
         ORDER BY p.priority DESC
+        LIMIT 1
     """)
     List<PriceJpaEntity> findApplicablePrices(
         Long productId,

@@ -17,7 +17,7 @@ public class PriceController {
         this.getPriceUseCase = getPriceUseCase;
     }
 
-    @PostMapping("/prices")
+    @GetMapping("/prices")
     public PriceResponseDTO getPrice(@RequestBody PriceRequestDTO request) {
         Price price = getPriceUseCase.execute(
                 request.getProductId(),
