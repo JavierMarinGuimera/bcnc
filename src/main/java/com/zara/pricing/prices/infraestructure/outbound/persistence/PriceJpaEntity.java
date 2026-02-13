@@ -1,16 +1,27 @@
-package com.zara.pricing.domain.model;
+package com.zara.pricing.prices.infraestructure.outbound.persistence;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "PRICES")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Price {
+public class PriceJpaEntity {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private Long productId;
     private Long brandId;
     private Integer priceList;
