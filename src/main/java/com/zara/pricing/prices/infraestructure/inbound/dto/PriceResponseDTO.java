@@ -1,4 +1,4 @@
-package com.zara.pricing.adapter.inbound.dto;
+package com.zara.pricing.prices.infraestructure.inbound.dto;
 
 import java.time.LocalDateTime;
 

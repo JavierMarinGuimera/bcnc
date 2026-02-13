@@ -1,13 +1,13 @@
-package com.zara.pricing.application.usecase;
+package com.zara.pricing.prices.application.usecase;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.zara.pricing.domain.exception.PriceNotFoundException;
-import com.zara.pricing.domain.model.Price;
-import com.zara.pricing.domain.port.PriceRepositoryPort;
+import com.zara.pricing.prices.domain.exception.PriceNotFoundException;
+import com.zara.pricing.prices.domain.model.Price;
+import com.zara.pricing.prices.domain.port.PriceRepositoryPort;
 
 @Component
 public class GetPriceUseCase {
