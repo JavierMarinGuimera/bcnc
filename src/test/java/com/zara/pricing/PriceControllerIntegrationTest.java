@@ -20,8 +20,8 @@ class PriceControllerIntegrationTest {
     private static final String URL = "/prices/get-price";
 
     @Test
-    @DisplayName("Test 1: 14-06 10:00")
-    void test1() throws Exception {
+    @DisplayName("Return price list 1 for product 35455 on 2020-06-14 10:00")
+    void shouldReturnPriceList1ForJune14At10() throws Exception {
         mockMvc.perform(get(URL)
                 .param("applicationDate", "2020-06-14T10:00:00")
                 .param("productId", "35455")
@@ -32,8 +32,8 @@ class PriceControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Test 2: 14-06 16:00")
-    void test2() throws Exception {
+    @DisplayName("Return price list 2 for product 35455 on 2020-06-14 16:00")
+    void shouldReturnPriceList2ForJune14At16() throws Exception {
         mockMvc.perform(get(URL)
                 .param("applicationDate", "2020-06-14T16:00:00")
                 .param("productId", "35455")
@@ -44,8 +44,8 @@ class PriceControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Test 3: 14-06 21:00")
-    void test3() throws Exception {
+    @DisplayName("Return price list 1 for product 35455 on 2020-06-14 21:00")
+    void shouldReturnPriceList1ForJune14At21() throws Exception {
         mockMvc.perform(get(URL)
                 .param("applicationDate", "2020-06-14T21:00:00")
                 .param("productId", "35455")
@@ -56,8 +56,8 @@ class PriceControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Test 4: 15-06 10:00")
-    void test4() throws Exception {
+    @DisplayName("Return price list 3 for product 35455 on 2020-06-15 10:00")
+    void shouldReturnPriceList3ForJune15At10() throws Exception {
         mockMvc.perform(get(URL)
                 .param("applicationDate", "2020-06-15T10:00:00")
                 .param("productId", "35455")
@@ -68,8 +68,8 @@ class PriceControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Test 5: 16-06 21:00")
-    void test5() throws Exception {
+    @DisplayName("Return price list 4 for product 35455 on 2020-06-16 21:00")
+    void shouldReturnPriceList4ForJune16At21() throws Exception {
         mockMvc.perform(get(URL)
                 .param("applicationDate", "2020-06-16T21:00:00")
                 .param("productId", "35455")
@@ -80,11 +80,22 @@ class PriceControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Get all prices")
-    void getAllPrices() throws Exception {
+    @DisplayName("Return all prices")
+    void shouldReturnAllPrices() throws Exception {
         mockMvc.perform(get("/prices"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(4))
                 .andExpect(jsonPath("$[0].productId").exists())
                 .andExpect(jsonPath("$[0].brandId").exists());
+    }
+
+    @Test
+    @DisplayName("Return 404 when price is not found")
+    void shouldReturn404WhenPriceNotFound() throws Exception {
+        mockMvc.perform(get(URL)
+                .param("applicationDate", "2020-06-14T10:00:00")
+                .param("productId", "99999")
+                .param("brandId", "99"))
+                .andExpect(status().isNotFound());
     }
 }
