@@ -7,4 +7,6 @@ import com.zara.pricing.domain.model.Price;
 
 public interface PriceRepositoryPort {
     List<Price> findApplicablePrices(Long productId, Long brandId, LocalDateTime date);
+
+    List<Price> findAllPrices();
 }

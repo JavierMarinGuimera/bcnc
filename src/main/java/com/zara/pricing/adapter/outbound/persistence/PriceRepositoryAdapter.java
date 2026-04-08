@@ -25,6 +25,13 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
                 .toList();
     }
 
+    @Override
+    public List<Price> findAllPrices() {
+        return priceJpaRepository.findAll().stream()
+                .map(this::toDomainModel)
+                .toList();
+    }
+
     private Price toDomainModel(PriceJpaEntity entity) {
         return new Price(
                 entity.getId(),
