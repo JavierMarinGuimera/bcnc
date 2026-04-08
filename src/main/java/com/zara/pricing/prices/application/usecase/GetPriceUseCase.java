@@ -1,7 +1,7 @@
 package com.zara.pricing.prices.application.usecase;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -19,12 +19,8 @@ public class GetPriceUseCase {
     }
 
     public Price execute(Long productId, Long brandId, LocalDateTime applicationDate) {
-        List<Price> prices = priceRepository.findApplicablePrices(productId, brandId, applicationDate);
-        
-        if (prices.isEmpty()) {
-            throw new PriceNotFoundException("No price found for the given criteria");
-        }
+        Optional<Price> price = priceRepository.findApplicablePrice(productId, brandId, applicationDate);
 
-        return prices.get(0);
+        return price.orElseThrow(() -> new PriceNotFoundException("No price found for the given criteria"));
     }
 }

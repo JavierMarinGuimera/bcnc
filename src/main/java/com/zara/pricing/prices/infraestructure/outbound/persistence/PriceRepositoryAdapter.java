@@ -2,6 +2,7 @@ package com.zara.pricing.prices.infraestructure.outbound.persistence;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -18,11 +19,11 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
     }
 
     @Override
-    public List<Price> findApplicablePrices(Long productId, Long brandId, LocalDateTime date) {
-        List<PriceJpaEntity> entities = priceJpaRepository.findApplicablePrices(productId, brandId, date);
-        return entities.stream()
-                .map(this::toDomainModel)
-                .toList();
+    public Optional<Price> findApplicablePrice(Long productId, Long brandId, LocalDateTime date) {
+        return priceJpaRepository
+                .findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
+                        productId, brandId, date, date)
+                .map(this::toDomainModel);
     }
 
     @Override

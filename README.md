@@ -87,13 +87,16 @@ GET /prices
 GET /prices/get-price
 ```
 
-**Request body:**
-```json
-{
-  "applicationDate": "2020-06-14T10:00:00",
-  "productId": 35455,
-  "brandId": 1
-}
+**Query parameters:**
+```
+productId=35455
+brandId=1
+applicationDate=2020-06-14T10:00:00
+```
+
+**Example request:**
+```
+GET /prices/get-price?productId=35455&brandId=1&applicationDate=2020-06-14T10:00:00
 ```
 
 **Response (200 OK):**
@@ -108,7 +111,7 @@ GET /prices/get-price
 }
 ```
 
-> Note: the current implementation uses `GET` with a JSON body for `/prices/get-price`.
+> Note: the implementation now uses query parameters instead of a request body for the GET request.
 
 ## 🧪 Tests
 
