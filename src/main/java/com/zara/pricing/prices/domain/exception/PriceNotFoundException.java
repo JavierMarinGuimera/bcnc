@@ -1,4 +1,4 @@
-package com.zara.pricing.domain.exception;
+package com.zara.pricing.prices.domain.exception;
 
 public class PriceNotFoundException extends RuntimeException {
     public PriceNotFoundException(String message) {

@@ -1,4 +1,4 @@
-package com.zara.pricing.adapter.outbound.persistence;
+package com.zara.pricing.prices.infraestructure.outbound.persistence;
 
 import java.time.LocalDateTime;
 import java.util.List;
